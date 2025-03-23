@@ -3,68 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Website</title>
+    <title>My Personal Website</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem;
-            text-align: center;
-        }
-        nav {
-            margin: 1rem;
-            text-align: center;
-        }
-        nav a {
-            margin: 0 1rem;
-            text-decoration: none;
-            color: #333;
-        }
-        main {
-            padding: 1rem;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; background: #f9f9f9; color: #333; }
+        header { text-align: center; padding: 20px; }
+        img { max-width: 200px; border-radius: 50%; }
+        section { margin-bottom: 40px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .gallery img { max-width: 150px; margin: 10px; border-radius: 12px; }
+        h1, h2 { color: #2c3e50; }
+        a { color: #2980b9; text-decoration: none; }
+        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <header>
         <h1>Welcome to My Personal Website</h1>
+        <img src="profile.jpg" alt="Profile Picture">
+        <h2>About Me</h2>
+        <p>Hi, I'm a student of the CS6.201 Introduction to Software Systems course. I am passionate about learning software development and exploring new technologies. My current work includes implementing projects like Conway's Game of Life, handling databases with MongoDB and MySQL, and transferring messy CSV data to SQL databases.</p>
     </header>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>This is a brief description about me.</p>
-        </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <p>Here are some of my projects.</p>
-        </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Feel free to reach out to me at myemail@example.com.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 My Personal Website</p>
-    </footer>
+
+    <section>
+        <h2>My Birthplace</h2>
+        <div class="gallery">
+            <img src="local1.jpg" alt="Local Image 1">
+            <img src="local2.jpg" alt="Local Image 2">
+            <img src="local3.jpg" alt="Local Image 3">
+        </div>
+    </section>
+
+    <section>
+        <h2>Education</h2>
+        <p><strong>CS6.201 Introduction to Software Systems</strong> - Currently enrolled (2025)</p>
+        <h3>Achievements</h3>
+        <ul>
+            <li>Implemented Conway's Game of Life and Fractal Visualizations using Python.</li>
+            <li>Performed CRUD operations on MongoDB's sample_mflix database.</li>
+            <li>Successfully transferred and cleaned messy CSV data to SQL databases.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Technical Skills</h2>
+        <ul>
+            <li><strong>Expert:</strong> Python, HTML/CSS</li>
+            <li><strong>Intermediate:</strong> MongoDB, MySQL, Data Processing</li>
+            <li><strong>Beginner:</strong> Fractal Visualization, GitHub Pages</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>My CV</h2>
+        <p><a href="cv.pdf" download>Download my CV (PDF)</a></p>
+    </section>
 </body>
 </html>
