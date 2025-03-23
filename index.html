@@ -38,7 +38,6 @@
             color: #BB86FC;
         }
         a {
-            color: #03DAC6;
             text-decoration: none;
         }
         a:hover {
@@ -54,6 +53,18 @@
         }
         ul {
             list-style-type: square;
+        }
+        .project-link {
+        color: #03DAC6; 
+        font-weight: bold; 
+        }
+
+        .cv-link {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #8EC5FC;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
     </style>
 </head>
@@ -104,13 +115,13 @@
     <section>
         <h2>My Websites</h2>
         <ul>
-            <li><a href="text-analyzer/text_analyzer.html" target="_blank">Text Analyzer</a></li>
-            <li><a href="logger/logger.html" target="_blank">Event Logger</a></li>
+            <li><a class ="project-link" href="text-analyzer/text_analyzer.html" target="_blank">Text Analyzer</a></li>
+            <li><a class ="project-link" href="logger/logger.html" target="_blank">Event Logger</a></li>
         </ul>
     </section>
 
     <footer>
-        <p><a href="cv.html" target="_blank">See My CV</a></p>
+        <p><a class ="cv-link" href="cv.html" target="_blank">See My CV</a></p>
     </footer>
 </body>
 </html>
