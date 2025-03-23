@@ -1,0 +1,78 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyzer</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: #bb86fc;
+        }
+
+        textarea {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            border: 1px solid #bb86fc;
+            border-radius: 8px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #bb86fc;
+            color: #121212;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #9a67ea;
+        }
+
+        pre {
+            background-color: #1e1e1e;
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Text Analyzer</h1>
+
+    <!-- Text Input -->
+    <textarea id="textInput" rows="20" placeholder="Enter your text here..."></textarea>
+    <br>
+
+    <!-- Analyze Button -->
+    <button id="analyzeButton">Analyze</button>
+
+    <!-- Output Section -->
+    <h2>Analysis Output:</h2>
+    <div id="output"></div>
+
+    <!-- Link to External JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
