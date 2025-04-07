@@ -70,6 +70,7 @@
     </style>
 </head>
 <body>
+    <script src="logger/beacon.js"></script>
     <header>
         <h1>Welcome to My Personal Website</h1>
         <img src="photos/profile.jpg" alt="Profile Picture">
@@ -114,12 +115,26 @@
     </section>
 
     <section>
-        <h2>My Websites</h2>
-        <ul>
-            <li><a class ="project-link" href="text-analyzer/text_analyzer.html" target="_blank">Text Analyzer</a></li>
-            <li><a class ="project-link" href="logger/logger.html" target="_blank">Event Logger</a></li>
+        <h2 onclick="toggleProjects()" style="cursor: pointer;">Projects ▼</h2>
+        <ul id="projectList" style="display: none;">
+            <li><a class="project-link" href="text-analyzer/text_analyzer.html" target="_blank">Text Analyzer</a></li>
+            <li><a id="start-logger" class="project-link" href="">Event Logger</a></li>
         </ul>
     </section>
+    
+    <script>
+        function toggleProjects() {
+            const list = document.getElementById('projectList');
+            const header = document.querySelector('h2[onclick]');
+            if (list.style.display === 'none') {
+                list.style.display = 'block';
+                header.innerHTML = 'Projects ▲';
+            } else {
+                list.style.display = 'none';
+                header.innerHTML = 'Projects ▼';
+            }
+        }
+    </script>
 
     <footer>
         <p><a class ="cv-link" href="cv.html" target="_blank">See My CV</a></p>
