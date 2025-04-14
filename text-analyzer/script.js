@@ -1,11 +1,7 @@
-// TextAnalyzer.js
-
-// List of common pronouns and prepositions
 const pronouns = ["i", "me", "my", "mine", "myself", "we", "us", "our", "ours", "ourselves", "you", "your", "yours", "yourself", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself", "they", "them", "their", "theirs", "themselves", "who", "whom", "whose", "which", "that"];
 
 const prepositions = ["about", "above", "across", "after", "against", "along", "among", "around", "at", "before", "behind", "below", "beneath", "beside", "between", "beyond", "by", "down", "during", "except", "for", "from", "in", "inside", "into", "like", "near", "of", "off", "on", "out", "outside", "over", "past", "since", "through", "to", "toward", "under", "until", "up", "upon", "with", "within", "without"];
 
-// Function to analyze the text
 function analyzeText() {
     const inputText = document.getElementById("textInput").value;
 
@@ -23,7 +19,6 @@ function analyzeText() {
     displayResults(letterCount, wordCount, spaceCount, newLineCount, specialSymbolCount, pronounCounts, prepositionCounts);
 }
 
-// Helper function to count occurrences of a given list
 function countOccurrences(tokens, list) {
     const counts = {};
     const normalizedList = new Set(list.map(word => word.toLowerCase()));
@@ -37,7 +32,6 @@ function countOccurrences(tokens, list) {
     return counts;
 }
 
-// Function to display results on the webpage
 function displayResults(letters, words, spaces, newlines, specials, pronouns, prepositions) {
     const output = document.getElementById("output");
     output.innerHTML = `
@@ -51,7 +45,6 @@ function displayResults(letters, words, spaces, newlines, specials, pronouns, pr
     `;
 }
 
-// Event listener to trigger analysis
 window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("analyzeButton").addEventListener("click", analyzeText);
 });

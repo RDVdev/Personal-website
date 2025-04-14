@@ -1,5 +1,3 @@
-// beacon.js
-
 function startLogger() {
     if (window.loggerStarted) return;
     window.loggerStarted = true;
@@ -13,7 +11,6 @@ function startLogger() {
     function getElementType(el) {
         if (!el) return 'unknown';
 
-        // Detect dropdown via on click h2 with "Projects"
         const dropdownHeader = el.closest('h2[onclick]');
         if (dropdownHeader && dropdownHeader.innerText.toLowerCase().includes('project')) {
             return 'dropdown';
@@ -28,14 +25,12 @@ function startLogger() {
         return el.tagName.toLowerCase();
     }
 
-    // logging click events
     document.addEventListener('click', function (e) {
         const elementType = getElementType(e.target);
         const timestamp = getTimestamp();
         console.log(`[${timestamp}] | click | ${elementType}`);
     });
 
-    // this is something to reduce viewing threshhold as by default it doesn't show ul as viewed
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -55,12 +50,11 @@ function startLogger() {
     console.log("Logger activated");
 }
 
-// Wait until DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     const loggerLink = document.getElementById('start-logger');
     if (loggerLink) {
-        loggerLink.addEventListener('click', function (e) { // this starts the logger on click of the event logger link
-            e.preventDefault(); //prevents already started logger to restart again
+        loggerLink.addEventListener('click', function (e) {
+            e.preventDefault();
             startLogger();
         });
     }
