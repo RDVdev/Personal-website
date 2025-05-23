@@ -1,0 +1,270 @@
+/* Global styles will be added here */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.8;
+    margin: 20px;
+    background: #121212;
+    color: #E0E0E0;
+}
+header {
+    text-align: center;
+    padding: 20px;
+}
+img {
+    max-width: 200px;
+    border-radius: 50%;
+    border: 3px solid #BB86FC;
+}
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: #1E1E1E;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+/* Old .gallery img rule removed as gallery structure is replaced by carousel */
+h1, h2 {
+    color: #BB86FC;
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* For hover effect */
+}
+
+/* Hover effect for section headers */
+section h2:hover {
+    color: #d1a8ff; /* Lighter shade of #BB86FC */
+    text-shadow: 0 0 8px rgba(187, 134, 252, 0.7);
+}
+
+a {
+    color: #03DAC6;
+    text-decoration: none;
+    transition: filter 0.3s ease, color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease; /* General transition for links */
+}
+a:hover {
+    text-decoration: underline;
+    filter: brightness(1.2);
+}
+
+.project-link {
+    /* Base styles are color: #03DAC6; font-weight: bold; */
+    /* transition is inherited from 'a' */
+}
+
+.project-link:hover {
+    text-shadow: 0 0 5px #03DAC6;
+    filter: brightness(1.3); /* Further brightness */
+}
+
+.cv-link {
+    /* Base styles: font-family: 'Montserrat', sans-serif; font-weight: 600; color: #8EC5FC; text-transform: uppercase; letter-spacing: 1.5px; */
+    padding: 5px 0px; /* Add initial padding for smooth transition */
+    border-radius: 5px; /* Add initial border-radius for smooth transition */
+    /* transition is inherited from 'a' */
+}
+
+.cv-link:hover {
+    background-color: #BB86FC;
+    color: #1E1E1E !important; /* Override general 'a' color if needed, ensure specificity */
+    box-shadow: 0 0 10px #BB86FC;
+    padding: 5px 10px; /* Add padding on hover */
+    text-decoration: none; /* Remove underline if not desired for this specific link */
+    filter: none; /* Reset brightness filter if not desired */
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: #1E1E1E;
+    color: #BB86FC;
+    border-radius: 12px;
+}
+ul {
+    list-style-type: square;
+}
+.project-link {
+color: #03DAC6; 
+font-weight: bold; 
+}
+
+.cv-link {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #8EC5FC;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Text Analyzer Page Specific Styles */
+body.text-analyzer-page {
+    color: #ffffff;
+    font-family: Arial, sans-serif; /* Different font */
+    padding: 20px; /* Different from global margin */
+    line-height: 1.6; /* Different from global */
+    /* background-color: #121212; Inherited from global body style */
+    /* margin: 20px; Inherited from global body style, padding will be applied inside */
+}
+
+.text-analyzer-page h1,
+.text-analyzer-page h2,
+.text-analyzer-page h3 {
+    color: #bb86fc; /* Same as global h1, h2 but also targets h3 */
+}
+
+.text-analyzer-page textarea {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #bb86fc;
+    border-radius: 8px;
+    padding: 15px; /* Increased padding */
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-analyzer-page textarea:focus {
+    border-color: #03DAC6; /* Teal color from other links */
+    box-shadow: 0 0 8px rgba(3, 218, 198, 0.3); /* Subtle glow */
+    outline: none; /* Remove default browser outline */
+}
+
+.text-analyzer-page button {
+    background-color: #bb86fc;
+    color: #121212;
+    padding: 12px 25px; /* Slightly larger padding */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold; /* Make text bolder */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.text-analyzer-page button:hover {
+    background-color: #9a67ea; /* Existing hover color */
+    transform: scale(1.03); /* Slight pop */
+    box-shadow: 0 4px 15px rgba(187, 134, 252, 0.4); /* Add some shadow on hover */
+}
+
+.text-analyzer-page #output {
+    margin-top: 30px; /* Increased margin-top */
+    padding: 20px; /* Increased padding */
+    background-color: #242424; /* Slightly different background for the output block */
+    border-radius: 8px;
+    border: 1px solid #383838; /* Slightly more visible border */
+    color: #E0E0E0; /* Default text color for output content */
+}
+
+.text-analyzer-page #output p { /* Style for the direct paragraph children like Counts */
+    margin-bottom: 10px; /* Increased margin */
+    line-height: 1.7; /* Improved line height for readability */
+}
+
+.text-analyzer-page #output h3 { /* Style for Pronouns/Prepositions headers */
+    color: #BB86FC; /* Consistent with other h3 in text-analyzer */
+    margin-top: 20px; /* Increased margin-top */
+    margin-bottom: 8px; /* Increased margin-bottom */
+    border-bottom: 1px solid #383838; /* Add a separator line */
+    padding-bottom: 5px; /* Padding for the separator line */
+}
+
+.text-analyzer-page #output pre {
+    background-color: #1c1c1c; /* Darker pre background */
+    padding: 15px; /* More padding */
+    border-radius: 6px;
+    overflow-x: auto;
+    border: 1px solid #2f2f2f; /* Slightly more visible border for pre */
+    color: #D0D0D0; /* Lighter text for pre content, but not pure white */
+    white-space: pre-wrap; /* Allow wrapping of long lines */
+    word-wrap: break-word; /* Break words if necessary */
+}
+
+/* Image Carousel Styles */
+.carousel-container {
+    position: relative;
+    max-width: 600px; /* Adjust as needed */
+    margin: auto;
+    overflow: hidden; /* Ensures buttons stay within bounds if absolutely positioned relative to this */
+    border-radius: 12px; /* Match section styling */
+    border: 2px solid #BB86FC; /* Match image border style */
+}
+
+.carousel-slide {
+    display: flex; /* Helps if we want to align items, though only one is visible */
+    justify-content: center; /* Center the image if it's smaller than the container */
+    align-items: center;
+}
+
+.carousel-slide img {
+    width: 100%; /* Make image take full width of the container */
+    max-width: 100%; /* Ensure image is not larger than its container */
+    height: auto; /* Maintain aspect ratio */
+    display: none; /* Initially hide all images; JS will show one */
+    border-radius: 0; /* Override global img border-radius if not desired here */
+    border: none; /* Override global img border if not desired here */
+    vertical-align: middle; /* Fixes potential bottom spacing */
+}
+
+/* Prev/Next buttons */
+.carousel-container .prev, .carousel-container .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px; /* Adjust to vertically center */
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.3s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.3); /* Semi-transparent background */
+    border: none;
+}
+
+.carousel-container .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.carousel-container .prev:hover, .carousel-container .next:hover {
+    background-color: rgba(187, 134, 252, 0.95); /* Use theme color on hover, increased opacity */
+    color: #121212; /* Keep text color change for contrast */
+}
+
+/* Project List Toggle Animation */
+#projectList {
+    list-style-type: square; /* Already defined in global ul, but can be specific if needed */
+    padding-left: 20px; /* Indent items */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out;
+    margin: 0; /* Reset margin if any from global ul */
+}
+
+#projectList.open {
+    max-height: 500px; /* Adjust based on content height */
+    opacity: 1;
+    margin-top: 10px; /* Add some space when open */
+}
+
+/* Scroll Animation for Sections */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px); /* Start slightly lower */
+    transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* CV Page Specific Styles */
+.cv-page a[href^="mailto:"]:hover {
+    color: #29B6F6; /* A slightly different, vibrant blue/cyan */
+    text-decoration: underline;
+    filter: brightness(1.1); /* Slightly less bright than general links */
+}
