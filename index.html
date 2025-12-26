@@ -3,141 +3,784 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="photos/download.jpeg" type="image">
-    <title>My Personal Website</title>
+    <title>Devansh Bansal | IIIT Hyderabad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.8;
-            margin: 20px;
-            background: #121212;
-            color: #E0E0E0;
-        }
-        header {
-            text-align: center;
-            padding: 20px;
-        }
-        img {
-            max-width: 200px;
-            border-radius: 50%;
-            border: 3px solid #BB86FC;
-        }
-        section {
-            margin-bottom: 40px;
-            padding: 20px;
-            background: #1E1E1E;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-        }
-        .gallery img {
-            max-width: 150px;
-            margin: 10px;
-            border-radius: 12px;
-            border: 2px solid #BB86FC;
-        }
-        h1, h2 {
-            color: #BB86FC;
-        }
-        a {
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            background: #1E1E1E;
-            color: #BB86FC;
-            border-radius: 12px;
-        }
-        ul {
-            list-style-type: square;
-        }
-        .project-link {
-        color: #03DAC6; 
-        font-weight: bold; 
+        /* --- CORE VARIABLES --- */
+        :root {
+            --bg-dark: #050511;
+            --bg-panel: rgba(20, 20, 35, 0.7);
+            --primary: #6C63FF; /* Electric Violet */
+            --secondary: #00F0FF; /* Cyan */
+            --accent: #FF6584; /* Salmon Pink */
+            --text-main: #ffffff;
+            --text-muted: #a0a0b0;
+            --border: rgba(255, 255, 255, 0.08);
+            --font-main: 'Outfit', sans-serif;
+            --font-code: 'Fira Code', monospace;
         }
 
-        .cv-link {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            color: #8EC5FC;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+        /* --- GLOBAL RESET --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
         }
+
+        /* --- BACKGROUND CANVAS --- */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.8; /* Increased slightly for visibility */
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 17, 0.8);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-family: var(--font-main);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: var(--text-main);
+        }
+
+        .nav-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* --- PAGE STRUCTURE --- */
+        main {
+            padding-top: 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            min-height: 80vh;
+            position: relative;
+        }
+
+        .page-section {
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.6s ease;
+            padding-bottom: 60px;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- HOME PAGE --- */
+        .hero-container {
+            height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            pointer-events: none; /* Let clicks pass through to canvas if needed, though text captures them */
+        }
+        /* Re-enable pointer events for buttons/text */
+        .hero-container > * { pointer-events: auto; }
+
+        .hero-sub {
+            color: var(--secondary);
+            font-family: var(--font-code);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .highlight { color: var(--primary); }
+
+        .typewriter {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            border-right: 2px solid var(--accent);
+            padding-right: 5px;
+            animation: blink 0.7s infinite;
+            font-family: var(--font-code);
+        }
+
+        .cta-btn {
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .cta-btn:hover {
+            background: rgba(108, 99, 255, 0.1);
+            box-shadow: 0 0 20px rgba(108, 99, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* --- ABOUT PAGE (BENTO GRID) --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1.8fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .bento-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .bento-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .card-profile {
+            grid-row: span 2;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(20,20,35,0.9), rgba(108,99,255,0.05));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        }
+
+        .info-list {
+            width: 100%;
+            text-align: left;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .info-list p { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .info-list i { color: var(--primary); width: 20px; }
+
+        .card-bio h3, .card-tech h3 { color: var(--text-main); margin-bottom: 15px; }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tech-item {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            border: 1px solid transparent;
+            transition: 0.3s;
+            color: var(--text-muted);
+        }
+
+        .tech-item:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            background: rgba(0, 240, 255, 0.1);
+        }
+
+        .coursework-ticker {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* --- PROJECTS PAGE --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: var(--bg-panel);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .p-content { padding: 25px; }
+
+        .p-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .folder-icon { font-size: 2rem; color: var(--primary); }
+        
+        .p-links a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-left: 15px;
+            transition: 0.3s;
+        }
+        .p-links a:hover { color: var(--secondary); }
+
+        .p-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .p-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .p-tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin-top: auto;
+            padding: 0 25px 25px 25px;
+        }
+
+        /* --- ROOTS SECTION --- */
+        .roots-text {
+            margin-top: 30px;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        .roots-gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px; 
+            width: 100%;
+        }
+
+        .roots-gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            opacity: 0.6;
+            filter: grayscale(20%);
+            border: 1px solid var(--border);
+            transition: 0.4s ease;
+        }
+
+        .roots-gallery img:hover { 
+            opacity: 1; 
+            filter: grayscale(0%);
+            transform: scale(1.02); 
+            border-color: var(--secondary); 
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        .social-footer a {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+        .social-footer a:hover { color: var(--primary); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .bento-grid { grid-template-columns: 1fr; }
+            nav { padding: 20px; }
+            .nav-links { gap: 15px; font-size: 0.9rem; }
+            .roots-gallery { grid-template-columns: 1fr; }
+        }
+
+        @keyframes blink { 50% { border-color: transparent; } }
     </style>
 </head>
 <body>
-    <script src="logger/beacon.js"></script>
-    <header>
-        <h1>Welcome to My Personal Website</h1>
-        <img src="photos/profile.jpg" alt="Profile Picture">
-        <h2>About Me</h2>
-        <p>Hi, I am Devansh Bansal. I'm a student of Computer Science Engineering at IIIT Hyderabad. I am passionate about learning software development and exploring new technologies—a techie if you may.</p>
-        <p>My birthplace is Ujjain but I am currently in the process of building memories, friendships, and skills at IIIT Hyderabad.</p>
-    </header>
 
-    <section>
-        <h2>My Birthplace</h2>
-        <p>The Holy city of Ujjain</p>
-        <div class="gallery">
-            <img src="photos/mahakal baba.jpeg" alt="Local Image 1">
-            <img src="photos/iskon darshan.jpeg" alt="Local Image 2">
+    <canvas id="bg-canvas"></canvas>
+
+    <nav>
+        <div class="logo" onclick="showSection('home')">DB.</div>
+        <div class="nav-links">
+            <button class="nav-btn active" onclick="showSection('home')">Home</button>
+            <button class="nav-btn" onclick="showSection('about')">About</button>
+            <button class="nav-btn" onclick="showSection('projects')">Projects</button>
+            <button class="nav-btn" onclick="showSection('roots')">Roots</button>
         </div>
-        <div class="gallery">
-            <img src="photos/mahakaleshwar temple.jpeg" alt="Local Image 3">
-            <img src="photos/ramghat.jpeg" alt="Local Image 4">
-            <img src="photos/Sundial.jpeg" alt="Local Image 5">
-        </div>
-    </section>
+    </nav>
 
-    <section>
-        <h2>Education</h2>
-        <p><strong>St. Mary's Convent Senior Secondary School</strong> - Science Major (Graduated 2024)</p>
-        <p><strong>International Institute of Information Technology</strong> - Bachelor of Science in Computer Science (Enrolled 2024)</p>
-        <h3>Achievements</h3>
-        <ul>
-            <li>Studied and excelled in Digital Electronics courses.</li>
-            <li>1000 rated in CodeForces.</li>
-            <li>Secured second place in the inter-college tournament.</li>
-        </ul>
-    </section>
+    <main>
+        <section id="home" class="page-section active">
+            <div class="hero-container">
+                <p class="hero-sub">Hi, my name is</p>
+                <h1>Devansh Bansal.</h1>
+                <h1 style="color: var(--text-muted); font-size: 3rem;">I engineer scalable systems.</h1>
+                <div style="margin-top: 25px;">
+                    <span id="typing-text" class="typewriter"></span>
+                </div>
+                <div style="margin-top: 40px; display: flex; gap: 20px;">
+                    <a href="mailto:devansh.bansal@research.iiit.ac.in" class="cta-btn">Get In Touch</a>
+                    <a href="cv/MY_CV.pdf" class="cta-btn" style="border-color: var(--secondary); color: var(--secondary);" target="_blank">Resume</a>
+                </div>
+            </div>
+        </section>
 
-    <section>
-        <h2>Technical Skills</h2>
-        <ul>
-            <li><strong>Expert:</strong> Python, HTML/CSS, C</li>
-            <li><strong>Intermediate:</strong> MongoDB, MySQL, Data Processing, C++</li>
-            <li><strong>Beginner:</strong> Fractal Visualization, GitHub Pages</li>
-        </ul>
-    </section>
+        <section id="about" class="page-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;"><span style="color: var(--primary)">01.</span> About Me</h2>
+            <div class="bento-grid">
+                <div class="bento-card card-profile">
+                    <img src="photos/profile.jpg" alt="Devansh Bansal" class="profile-pic">
+                    <h3 style="font-size: 1.5rem;">Devansh Bansal</h3>
+                    <p style="color: var(--secondary); font-family: var(--font-code); font-size: 0.9rem;">IIIT Hyderabad</p>
+                    
+                    <div class="info-list">
+                        <p><i class="fas fa-graduation-cap"></i> B.Tech CSE + MS by Research</p>
+                        <p><i class="fas fa-star"></i> CGPA: 8.19 (2024 - 2029)</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Hyderabad, India</p>
+                        <p><i class="fas fa-code"></i> CodeForces Active</p>
+                    </div>
+                </div>
 
-    <section>
-        <h2 onclick="toggleProjects()" style="cursor: pointer;">Projects ▼</h2>
-        <ul id="projectList" style="display: none;">
-            <li><a class="project-link" href="text-analyzer/text_analyzer.html" target="_blank">Text Analyzer</a></li>
-            <li><a id="start-logger" class="project-link" href="">Event Logger</a></li>
-        </ul>
-    </section>
-    
-    <script>
-        function toggleProjects() {
-            const list = document.getElementById('projectList');
-            const header = document.querySelector('h2[onclick]');
-            if (list.style.display === 'none') {
-                list.style.display = 'block';
-                header.innerHTML = 'Projects ▲';
-            } else {
-                list.style.display = 'none';
-                header.innerHTML = 'Projects ▼';
-            }
-        }
-    </script>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="bento-card card-bio">
+                        <h3>Background</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            I am a Computer Science undergrad and researcher at <strong>IIIT Hyderabad</strong>, with a strong focus on <strong>Systems, Backend Development, and Algorithm Optimization</strong>. 
+                            My work involves designing distributed databases, building custom operating system kernels, and analyzing complex network flows.
+                        </p>
+                    </div>
+
+                    <div class="bento-card card-tech">
+                        <h3>Technical Arsenal</h3>
+                        <div class="tech-stack">
+                            <span class="tech-item">C++</span>
+                            <span class="tech-item">C</span>
+                            <span class="tech-item">Python (Flask)</span>
+                            <span class="tech-item">SQL</span>
+                            <span class="tech-item">JavaScript</span>
+                            <span class="tech-item">x86-64 Assembly</span>
+                            <span class="tech-item">Node.js</span>
+                            <span class="tech-item">Linux / Bash</span>
+                            <span class="tech-item">Git</span>
+                            <span class="tech-item">MongoDB</span>
+                        </div>
+                        <div class="coursework-ticker">
+                            <strong>Coursework:</strong> Data Structures & Algorithms • Operating Systems • Computer Networks • DBMS • Distributed Systems • Linear Algebra • Digital Systems • Probability and Statistics • Theory of Computation
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="page-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;"><span style="color: var(--primary)">02.</span> Projects</h2>
+            <div class="project-grid">
+                
+                <div class="project-card">
+                    <div class="p-content">
+                        <div class="p-header">
+                            <i class="far fa-folder folder-icon"></i>
+                            <div class="p-links">
+                                <a href="https://github.com/RDVdev" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="p-title">PokéNetDB</h3>
+                        <p class="p-desc">
+                            A distributed relational database modeling complex datasets. Enforced data integrity using constraints, triggers, and stored procedures for analytical workloads.
+                        </p>
+                    </div>
+                    <div class="p-tech-list">
+                        <span>SQL</span>
+                        <span>Python</span>
+                        <span>DBMS</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="p-content">
+                        <div class="p-header">
+                            <i class="fas fa-terminal folder-icon"></i>
+                            <div class="p-links">
+                                <a href="https://github.com/RDVdev" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="p-title">C-Shell Implementation</h3>
+                        <p class="p-desc">
+                            Built a custom Unix shell in C supporting piping, I/O redirection, background execution, and robust signal handling using system calls.
+                        </p>
+                    </div>
+                    <div class="p-tech-list">
+                        <span>C</span>
+                        <span>Unix Syscalls</span>
+                        <span>Process Control</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="p-content">
+                        <div class="p-header">
+                            <i class="fas fa-microchip folder-icon"></i>
+                            <div class="p-links">
+                                <a href="https://github.com/RDVdev" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="p-title">xv6 OS Enhancements</h3>
+                        <p class="p-desc">
+                            Extended the xv6 kernel (RISC-V) with custom CPU scheduling policies and additional system calls. Developed kernel-level tests to evaluate fairness.
+                        </p>
+                    </div>
+                    <div class="p-tech-list">
+                        <span>C</span>
+                        <span>RISC-V</span>
+                        <span>Kernel Dev</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="p-content">
+                        <div class="p-header">
+                            <i class="fas fa-network-wired folder-icon"></i>
+                            <div class="p-links">
+                                <a href="https://github.com/RDVdev" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="p-title">Distributed File System</h3>
+                        <p class="p-desc">
+                            A Google Docs-like multi-threaded file system enabling concurrent multi-user access over a network with strict locking mechanisms.
+                        </p>
+                    </div>
+                    <div class="p-tech-list">
+                        <span>C</span>
+                        <span>Sockets</span>
+                        <span>Multi-threading</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="p-content">
+                        <div class="p-header">
+                            <i class="fas fa-chart-line folder-icon"></i>
+                            <div class="p-links">
+                                <a href="https://github.com/RDVdev" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="p-title">Max Flow Analysis</h3>
+                        <p class="p-desc">
+                            Implemented and benchmarked Ford–Fulkerson, Dinic’s, and Push–Relabel algorithms to analyze asymptotic complexity on diverse graph structures.
+                        </p>
+                    </div>
+                    <div class="p-tech-list">
+                        <span>C++</span>
+                        <span>Algorithms</span>
+                        <span>Graph Theory</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="roots" class="page-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;"><span style="color: var(--primary)">03.</span> Roots</h2>
+            
+            <div class="roots-text">
+                <h3 style="color: var(--secondary); font-family: var(--font-code); margin-bottom: 10px;">Origin: Ujjain</h3>
+                <p style="line-height: 1.7; color: var(--text-muted); font-size: 1.1rem;">
+                    Hailing from the historic city of <strong>Ujjain</strong>, I find inspiration in the balance between ancient heritage and modern logic. 
+                    Just as the Jantar Mantar (Observatory) in Ujjain was built to calculate time and astronomical positions with precision, I strive to build software systems that are precise, efficient, and enduring.
+                </p>
+            </div>
+
+            <div class="roots-gallery">
+                <img src="photos/mahakaleshwar temple.jpeg" alt="Mahakal">
+                <img src="photos/ramghat.jpeg" alt="Ramghat">
+                <img src="photos/Sundial.jpeg" alt="Observatory">
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p><a class="cv-link" href="cv/MY_CV.pdf" target="_blank">See My CV</a></p>
+        <div class="social-footer">
+            <a href="https://github.com/RDVdev" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/devansh-bansal-981b0024b" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:devansh.bansal@research.iiit.ac.in"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 20px;">Designed & Built by Devansh Bansal</p>
     </footer>
+
+    <script>
+        // --- NAVIGATION LOGIC ---
+        function showSection(sectionId) {
+            document.querySelectorAll('.page-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.getAttribute('onclick').includes(sectionId)) {
+                    btn.classList.add('active');
+                }
+            });
+            window.scrollTo(0,0);
+        }
+
+        // --- TYPING EFFECT ---
+        const textElement = document.getElementById('typing-text');
+        const phrases = [
+            "Systems Programmer",
+            "Backend Developer",
+            "OS Enthusiast",
+            "Algorithm Designer"
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            if (isDeleting) {
+                textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+            setTimeout(type, typeSpeed);
+        }
+        
+        window.onload = () => {
+            type();
+            initParticles();
+        };
+
+        // --- INTERACTIVE PARTICLE BACKGROUND ---
+        function initParticles() {
+            const canvas = document.getElementById('bg-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let particlesArray = [];
+            const numberOfParticles = 80;
+
+            // MOUSE OBJECT
+            let mouse = {
+                x: null,
+                y: null,
+                radius: 150 // Connection radius
+            };
+
+            window.addEventListener('mousemove', function(event){
+                mouse.x = event.x;
+                mouse.y = event.y;
+            });
+
+            // Handle resize
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+
+            // Handle touch for mobile
+            window.addEventListener('touchmove', function(event){
+                 mouse.x = event.touches[0].clientX;
+                 mouse.y = event.touches[0].clientY;
+            });
+            window.addEventListener('touchend', function(){
+                mouse.x = null;
+                mouse.y = null;
+            });
+
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    // Boundary check
+                    if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                    if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+
+                    // INTERACTIVITY: Mouse Connection
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if (distance < mouse.radius) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(108, 99, 255, ${1 - distance/mouse.radius})`; // Fade out
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(this.x, this.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                        ctx.closePath();
+                    }
+                }
+                draw() {
+                    ctx.fillStyle = '#6C63FF';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function init() {
+                for (let i = 0; i < numberOfParticles; i++){
+                    particlesArray.push(new Particle());
+                }
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update();
+                    particlesArray[i].draw();
+                    
+                    // Connect particles to each other
+                    for (let j = i; j < particlesArray.length; j++) {
+                        const dx = particlesArray[i].x - particlesArray[j].x;
+                        const dy = particlesArray[i].y - particlesArray[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 120) {
+                            ctx.strokeStyle = `rgba(108, 99, 255, ${1 - distance/120})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateParticles);
+            }
+
+            init();
+            animateParticles();
+        }
+    </script>
 </body>
 </html>
