@@ -426,7 +426,8 @@
                 </div>
                 <div style="margin-top: 40px; display: flex; gap: 20px;">
                     <a href="mailto:devansh.bansal@research.iiit.ac.in" class="cta-btn">Get In Touch</a>
-                    <a href="cv/MY_CV.pdf" class="cta-btn" style="border-color: var(--secondary); color: var(--secondary);" target="_blank">Resume</a>
+                    <a href="cv/resume_quant.html" class="cta-btn" style="border-color: var(--secondary); color: var(--secondary);">Quant Resume</a>
+                    <a href="cv/resume_sde.html" class="cta-btn" style="border-color: var(--accent); color: var(--accent);">SDE Resume</a>
                 </div>
             </div>
         </section>
@@ -481,7 +482,70 @@
         <section id="projects" class="page-section">
             <h2 style="font-size: 2.5rem; margin-bottom: 20px;"><span style="color: var(--primary)">02.</span> Projects</h2>
             <div class="project-grid">
-                
+
+                <div class="project-card">
+                    <div class="p-content">
+                        <div class="p-header">
+                            <i class="fas fa-chart-line folder-icon" style="color: var(--accent);"></i>
+                            <div class="p-links">
+                                <a href="https://github.com/RDVdev/my_quant_projects" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="p-title">ML-Driven Equity Trading Strategy</h3>
+                        <p class="p-desc">
+                            End-to-end quantitative trading pipeline with a 22-feature cross-sectional model across 100 equities. Rolling ensemble of Ridge + LightGBM + CatBoost achieving 410% cumulative return vs. 320% benchmark.
+                        </p>
+                    </div>
+                    <div class="p-tech-list">
+                        <span>Python</span>
+                        <span>LightGBM</span>
+                        <span>CatBoost</span>
+                        <span>scikit-learn</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="p-content">
+                        <div class="p-header">
+                            <i class="fas fa-brain folder-icon" style="color: var(--secondary);"></i>
+                            <div class="p-links">
+                                <a href="https://github.com/RDVdev/irel-project" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="p-title">NLP Pipeline — iREL</h3>
+                        <p class="p-desc">
+                            Full-stack NLP pipeline extracting concept dependencies from code-mixed educational videos. Whisper ASR + GPT-4 extraction + DAG validation with interactive graph visualization.
+                        </p>
+                    </div>
+                    <div class="p-tech-list">
+                        <span>Python</span>
+                        <span>Whisper</span>
+                        <span>GPT-4</span>
+                        <span>NetworkX</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="p-content">
+                        <div class="p-header">
+                            <i class="fas fa-coins folder-icon" style="color: var(--accent);"></i>
+                            <div class="p-links">
+                                <a href="https://github.com/RDVdev/my_quant_projects" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="p-title">Quantitative Research Suite</h3>
+                        <p class="p-desc">
+                            Credit risk modeling (0.9999 ROC-AUC), FICO score bucketing via L-BFGS-B optimization, commodity price forecasting with harmonic features, and gas storage contract DCF valuation.
+                        </p>
+                    </div>
+                    <div class="p-tech-list">
+                        <span>Python</span>
+                        <span>SciPy</span>
+                        <span>scikit-learn</span>
+                        <span>NumPy</span>
+                    </div>
+                </div>
+
                 <div class="project-card">
                     <div class="p-content">
                         <div class="p-header">
@@ -635,6 +699,7 @@
         const phrases = [
             "Systems Programmer",
             "Backend Developer",
+            "Quant Researcher",
             "OS Enthusiast",
             "Algorithm Designer"
         ];

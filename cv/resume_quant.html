@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devansh Bansal | Resume — Quant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #050511;
+            --bg-panel: rgba(20, 20, 35, 0.7);
+            --primary: #6C63FF;
+            --secondary: #00F0FF;
+            --accent: #FF6584;
+            --text-main: #ffffff;
+            --text-muted: #a0a0b0;
+            --border: rgba(255, 255, 255, 0.08);
+            --font-main: 'Outfit', sans-serif;
+            --font-code: 'Fira Code', monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+        #bg-canvas {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1; opacity: 0.8;
+        }
+        nav {
+            position: fixed; top: 0; width: 100%;
+            padding: 20px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(5, 5, 17, 0.8);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo {
+            font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            cursor: pointer; text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-btn {
+            background: none; border: none;
+            color: var(--text-muted); font-family: var(--font-main);
+            font-size: 1rem; font-weight: 600;
+            cursor: pointer; transition: 0.3s;
+            text-decoration: none;
+        }
+        .nav-btn:hover { color: var(--text-main); }
+
+        main {
+            padding-top: 100px; max-width: 900px;
+            margin: 0 auto; padding-left: 20px; padding-right: 20px;
+            padding-bottom: 80px;
+        }
+
+        /* --- Resume Header --- */
+        .resume-header {
+            text-align: center; margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+        }
+        .resume-header h1 {
+            font-size: 2.8rem; margin-bottom: 8px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .resume-header .subtitle {
+            color: var(--accent); font-family: var(--font-code);
+            font-size: 1rem; margin-bottom: 12px;
+        }
+        .resume-header .contact-row {
+            display: flex; justify-content: center; flex-wrap: wrap;
+            gap: 25px; color: var(--text-muted); font-size: 0.9rem;
+        }
+        .resume-header .contact-row a {
+            color: var(--text-muted); text-decoration: none; transition: 0.3s;
+        }
+        .resume-header .contact-row a:hover { color: var(--secondary); }
+        .resume-header .contact-row i { margin-right: 6px; color: var(--primary); }
+
+        /* --- Section --- */
+        .resume-section { margin-bottom: 35px; }
+        .resume-section h2 {
+            font-size: 1.4rem; margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+        .resume-section h2 .num {
+            color: var(--primary); font-family: var(--font-code);
+            margin-right: 8px;
+        }
+
+        /* --- Education --- */
+        .edu-card {
+            background: var(--bg-panel); border: 1px solid var(--border);
+            border-radius: 12px; padding: 20px 25px;
+        }
+        .edu-card:hover { border-color: var(--primary); }
+        .edu-row {
+            display: flex; justify-content: space-between; align-items: baseline;
+            flex-wrap: wrap; gap: 8px;
+        }
+        .edu-card h3 { font-size: 1.1rem; color: var(--text-main); }
+        .edu-card .date { color: var(--secondary); font-family: var(--font-code); font-size: 0.85rem; }
+        .edu-card .degree { color: var(--text-muted); font-size: 0.95rem; margin-top: 4px; }
+        .edu-card .coursework {
+            margin-top: 10px; font-size: 0.85rem; color: var(--text-muted);
+            font-family: var(--font-code); line-height: 1.6;
+        }
+
+        /* --- Skills --- */
+        .skills-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .skill-cat {
+            background: var(--bg-panel); border: 1px solid var(--border);
+            border-radius: 12px; padding: 18px 22px;
+            transition: 0.3s;
+        }
+        .skill-cat:hover { border-color: var(--primary); }
+        .skill-cat h4 {
+            color: var(--secondary); font-family: var(--font-code);
+            font-size: 0.8rem; margin-bottom: 10px;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-tag {
+            padding: 5px 12px; background: rgba(255,255,255,0.05);
+            border-radius: 5px; font-size: 0.85rem;
+            color: var(--text-muted); font-family: var(--font-code);
+            border: 1px solid transparent; transition: 0.3s;
+        }
+        .skill-tag:hover {
+            border-color: var(--secondary); color: var(--secondary);
+            background: rgba(0, 240, 255, 0.1);
+        }
+
+        /* --- Project Entry --- */
+        .project-entry {
+            background: var(--bg-panel); border: 1px solid var(--border);
+            border-radius: 12px; padding: 22px 25px;
+            margin-bottom: 18px; transition: 0.3s;
+        }
+        .project-entry:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px -8px rgba(0,0,0,0.4);
+        }
+        .proj-header {
+            display: flex; justify-content: space-between;
+            align-items: baseline; flex-wrap: wrap; gap: 8px;
+            margin-bottom: 6px;
+        }
+        .proj-header h3 { font-size: 1.1rem; }
+        .proj-header a {
+            color: var(--text-muted); text-decoration: none;
+            font-size: 1rem; transition: 0.3s;
+        }
+        .proj-header a:hover { color: var(--secondary); }
+        .proj-tech {
+            font-family: var(--font-code); font-size: 0.8rem;
+            color: var(--secondary); margin-bottom: 10px;
+        }
+        .proj-bullets { list-style: none; padding: 0; }
+        .proj-bullets li {
+            color: var(--text-muted); font-size: 0.9rem;
+            line-height: 1.6; margin-bottom: 6px;
+            padding-left: 18px; position: relative;
+        }
+        .proj-bullets li::before {
+            content: '▸'; position: absolute; left: 0;
+            color: var(--primary);
+        }
+        .proj-bullets strong { color: var(--text-main); }
+
+        footer {
+            text-align: center; padding: 40px 0;
+            color: var(--text-muted); font-size: 0.9rem;
+            border-top: 1px solid var(--border); margin-top: 60px;
+        }
+        .social-footer a {
+            color: var(--text-muted); font-size: 1.5rem;
+            margin: 0 15px; transition: 0.3s;
+        }
+        .social-footer a:hover { color: var(--primary); }
+
+        @media (max-width: 768px) {
+            .resume-header h1 { font-size: 2rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            nav { padding: 20px; }
+            .nav-links { gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav>
+        <a href="index.html" class="logo">DB.</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="cv/resume_quant.html" class="nav-btn" style="color: var(--text-main);">Quant Resume</a>
+            <a href="cv/resume_sde.html" class="nav-btn">SDE Resume</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Header -->
+        <div class="resume-header">
+            <h1>Devansh Bansal</h1>
+            <p class="subtitle">Quantitative Research &amp; Trading</p>
+            <div class="contact-row">
+                <span><i class="fas fa-envelope"></i><a href="mailto:devansh.bansal@research.iiit.ac.in">devansh.bansal@research.iiit.ac.in</a></span>
+                <span><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/devansh-bansal-981b0024b" target="_blank">LinkedIn</a></span>
+                <span><i class="fab fa-github"></i><a href="https://github.com/RDVdev" target="_blank">GitHub</a></span>
+                <span><i class="fas fa-map-marker-alt"></i>Hyderabad, India</span>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="resume-section">
+            <h2><span class="num">01.</span> Education</h2>
+            <div class="edu-card">
+                <div class="edu-row">
+                    <h3>International Institute of Information Technology, Hyderabad</h3>
+                    <span class="date">2024 — 2029</span>
+                </div>
+                <p class="degree">B.Tech Computer Science &amp; Engineering + MS by Research &nbsp;|&nbsp; CGPA: 8.19</p>
+                <p class="coursework"><strong>Relevant:</strong> Probability &amp; Statistics • Linear Algebra • Data Structures &amp; Algorithms • Theory of Computation • Distributed Systems • DBMS</p>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="resume-section">
+            <h2><span class="num">02.</span> Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-cat">
+                    <h4>Languages</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">x86-64 Assembly</span>
+                    </div>
+                </div>
+                <div class="skill-cat">
+                    <h4>Quant / ML</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">scikit-learn</span>
+                        <span class="skill-tag">LightGBM</span>
+                        <span class="skill-tag">CatBoost</span>
+                        <span class="skill-tag">pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">SciPy</span>
+                    </div>
+                </div>
+                <div class="skill-cat">
+                    <h4>Data &amp; Infra</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Linux / Bash</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                </div>
+                <div class="skill-cat">
+                    <h4>Frameworks</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">NetworkX</span>
+                        <span class="skill-tag">OpenAI API</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Seaborn</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="resume-section">
+            <h2><span class="num">03.</span> Projects</h2>
+
+            <div class="project-entry">
+                <div class="proj-header">
+                    <h3>ML-Driven Equity Trading Strategy</h3>
+                    <a href="https://github.com/RDVdev/my_quant_projects" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+                <p class="proj-tech">Python • LightGBM • CatBoost • scikit-learn • pandas</p>
+                <ul class="proj-bullets">
+                    <li>Built end-to-end quantitative trading pipeline: <strong>22-feature</strong> cross-sectional model (momentum, volatility, mean reversion, microstructure) across <strong>100 anonymized equities</strong> over 10 years of daily OHLCV data</li>
+                    <li>Engineered rolling ensemble of Ridge Regression + LightGBM + CatBoost with 252-day adaptive retraining, achieving <strong>410% cumulative return vs. 320% benchmark</strong></li>
+                    <li>Implemented grid-search hyperparameter optimization over signal weights, smoothing alpha, and quantile thresholds to maximize <strong>Sharpe ratio</strong> with 10 bps transaction cost modeling</li>
+                    <li>Designed inverse-volatility position sizing and rank-transformed regression targets to reduce sensitivity to market regime shifts and extreme outliers</li>
+                </ul>
+            </div>
+
+            <div class="project-entry">
+                <div class="proj-header">
+                    <h3>Quantitative Research Projects</h3>
+                    <a href="https://github.com/RDVdev/my_quant_projects" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+                <p class="proj-tech">Python • SciPy • scikit-learn • NumPy • Matplotlib</p>
+                <ul class="proj-bullets">
+                    <li><strong>Credit Risk Modeling:</strong> Trained Logistic Regression and Random Forest classifiers achieving <strong>99.9% accuracy</strong> and <strong>0.9999 ROC-AUC</strong> on loan default prediction; implemented expected loss framework (PD × EAD × LGD)</li>
+                    <li><strong>FICO Bucketing:</strong> Developed optimal credit segmentation via constrained non-linear optimization (L-BFGS-B), comparing MSE vs. log-likelihood objectives to partition continuous scores into risk tiers</li>
+                    <li><strong>Commodity Forecasting:</strong> Built time series model decomposing natural gas prices into trend and seasonal components using harmonic sine/cosine feature engineering, achieving R² &gt; 0.85</li>
+                    <li><strong>Storage Contract Valuation:</strong> Engineered deterministic DCF framework pricing gas storage contracts across seasonal spreads with injection/withdrawal mechanics and inventory constraint validation</li>
+                </ul>
+            </div>
+
+            <div class="project-entry">
+                <div class="proj-header">
+                    <h3>NLP Pipeline for Educational Content Analysis</h3>
+                    <a href="https://github.com/RDVdev/irel-project" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+                <p class="proj-tech">Python • OpenAI Whisper • GPT-4 • NetworkX • Pyvis</p>
+                <ul class="proj-bullets">
+                    <li>Architected 3-phase NLP pipeline: audio ingestion (yt-dlp + ffmpeg), multilingual ASR (Whisper large-v3), and LLM-based concept extraction with structured JSON output and DAG validation</li>
+                    <li>Implemented graph normalization with cycle enforcement using confidence-ranked greedy edge insertion and topological sorting for pedagogical flow ordering</li>
+                    <li>Built robust LLM output parser handling code-mixed Hindi-English transcripts with concept aliasing, ID sanitization, and flexible JSON extraction</li>
+                </ul>
+            </div>
+
+            <div class="project-entry">
+                <div class="proj-header">
+                    <h3>Max Flow Algorithm Analysis</h3>
+                </div>
+                <p class="proj-tech">C++ • Graph Theory</p>
+                <ul class="proj-bullets">
+                    <li>Implemented and benchmarked Ford–Fulkerson, Dinic's, and Push–Relabel algorithms; analyzed asymptotic complexity on dense, sparse, and adversarial graph structures</li>
+                </ul>
+            </div>
+
+            <div class="project-entry">
+                <div class="proj-header">
+                    <h3>Distributed File System</h3>
+                </div>
+                <p class="proj-tech">C • Sockets • Pthreads</p>
+                <ul class="proj-bullets">
+                    <li>Built multi-threaded networked file system supporting concurrent multi-user access with strict reader-writer locking and socket-based IPC</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-footer">
+            <a href="https://github.com/RDVdev" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/devansh-bansal-981b0024b" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:devansh.bansal@research.iiit.ac.in"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 20px;">Designed &amp; Built by Devansh Bansal</p>
+    </footer>
+
+    <script>
+        function initParticles() {
+            const canvas = document.getElementById('bg-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            let particlesArray = [];
+            const numberOfParticles = 80;
+            let mouse = { x: null, y: null, radius: 150 };
+            window.addEventListener('mousemove', e => { mouse.x = e.x; mouse.y = e.y; });
+            window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+            class Particle {
+                constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*2+1; this.speedX = Math.random()*0.5-0.25; this.speedY = Math.random()*0.5-0.25; }
+                update() {
+                    this.x += this.speedX; this.y += this.speedY;
+                    if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                    if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+                    let dx = mouse.x - this.x, dy = mouse.y - this.y, d = Math.sqrt(dx*dx+dy*dy);
+                    if (d < mouse.radius) { ctx.beginPath(); ctx.strokeStyle = `rgba(108,99,255,${1-d/mouse.radius})`; ctx.lineWidth = 1; ctx.moveTo(this.x, this.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); ctx.closePath(); }
+                }
+                draw() { ctx.fillStyle = '#6C63FF'; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill(); }
+            }
+            for (let i = 0; i < numberOfParticles; i++) particlesArray.push(new Particle());
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update(); particlesArray[i].draw();
+                    for (let j = i; j < particlesArray.length; j++) {
+                        const dx = particlesArray[i].x-particlesArray[j].x, dy = particlesArray[i].y-particlesArray[j].y, d = Math.sqrt(dx*dx+dy*dy);
+                        if (d < 120) { ctx.strokeStyle = `rgba(108,99,255,${1-d/120})`; ctx.lineWidth = 0.5; ctx.beginPath(); ctx.moveTo(particlesArray[i].x,particlesArray[i].y); ctx.lineTo(particlesArray[j].x,particlesArray[j].y); ctx.stroke(); }
+                    }
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+        window.onload = initParticles;
+    </script>
+</body>
+</html>
